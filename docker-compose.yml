@@ -16,7 +16,7 @@ services:
       - /app/node_modules
 
     postgis:
-      image: postgis
+      image: mdillon/postgis
       ports:
       - "35432:5432"
       environment:

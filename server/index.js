@@ -1,12 +1,12 @@
 const express = require("express");
+const { Client } = require('pg')
 const app = express();
 
 const client = new Client({
-  user: "ppraxis",
-  host: "postgis",
-  database: "postgres",
-  password: "testing",
-  port: 35432
+  user: "user",
+  host: "postgres",
+  database: "db",
+  password: "pass",
 });
 client.connect();
 client.query("SELECT NOW()", (err, res) => {

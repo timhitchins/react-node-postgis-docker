@@ -1,25 +1,25 @@
 version: "3"
 services:
-  node-app:
-    build: .
+  server:
+    build: ./server/
     depends_on:
-      - postgis
+      - postgres
     environment:
-      DATABASE_URL: postgres://user:pass@postgres:5432/postgres
+      DATABASE_URL: postgres://user:pass@postgres:5432/db
       NODE_ENV: development
       PORT: 5000
     ports:
       - "5000:5000"
-    command: npm run dev
+    #command: npm run dev
     volumes:
-      - .:/app/
+      - ./server:/app/
       - /app/node_modules
 
-    postgis:
-      image: mdillon/postgis
-      ports:
+  postgres:
+    image: mdillon/postgis:latest
+    ports:
       - "35432:5432"
-      environment:
-        POSTGRES_USER: ppraxis
-        POSTGRES_PASSWORD: testing
-        POSTGRES_DB: postgres
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
+      POSTGRES_DB: db

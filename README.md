@@ -17,8 +17,9 @@ docker-compose up
 
 To run the front-end build in Nginx, naigate to the 
 client directory and run:
+(you will not see any output)
 ```
 docker build .
-docker run \<containerid\> 
-docker run -p 8080:80
+docker run -p 8080:80 \<containerid\>
 ```
+ 

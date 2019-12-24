@@ -14,6 +14,27 @@ services:
     volumes:
       - ./server:/app/
       - /app/node_modules
+  web:
+    ##this is the dev client
+    build:
+      context: ./client/
+      dockerfile: Dockerfile.dev
+    depends_on:
+      - server
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./client:/app/
+      - /app/node_modules
+
+  tests:
+    build:
+      context: ./client/
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./client:/app/
+      - /app/node_modules
+    command: ["npm", "run", "test"]
 
   postgres:
     image: mdillon/postgis:latest
